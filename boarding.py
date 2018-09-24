@@ -1,3 +1,5 @@
+import random
+
 from boarding_process import BoardingProcess, RandomBoarding
 from passenger import Passenger
 from plane import Plane
@@ -60,15 +62,28 @@ class Boarding:
             luggage_count += len(p.lugagge_list)
         return luggage_count
 
+    def assign_seats(self):
+        seat_list = []
+        for p in self.passenger_list:
+            assert isinstance(p, Passenger)
+            row = p.row_number = random.randint(0, self.plane.number_of_rows)
+            seat = p.seat_number = random.randint(0, self.plane.seats_per_row)
+
+            seat_list.append([row,seat])
+
+
+
 
 if __name__ == '__main__':
     b = Boarding()
 
     b.print_description()
 
-    b.generate_passengers(150)
+    b.generate_passengers(100)
 
     b.print_description()
+
+    b.assign_seats()
 
     b.boarding_process = RandomBoarding()
     b.board()

@@ -11,6 +11,9 @@ class BoardingProcess:
 
 
 class SequentialBoarding(BoardingProcess):
+    def __str__(self):
+        return 'Sequential Boarding Process'
+
     def board(self, plane, passenger_list):
         self.plane = plane
         self.passenger_list = passenger_list
@@ -27,6 +30,7 @@ class SequentialBoarding(BoardingProcess):
                 raise Exception('Need a row number')
 
             print('Passenger trying to get to Row {} Seat {}'.format(p.row_number, p.seat_number))
+
 
 
 class RandomBoarding(BoardingProcess):
@@ -54,8 +58,7 @@ class RandomBoarding(BoardingProcess):
             print('Passenger trying to get to Row {} Seat {}'.format(p.row_number, p.seat_number))
 
     def assign_seats(self):
-        
+
         if not self.passenger_list:
             raise Exception('No passenger list to assign seats to.')
-
 
