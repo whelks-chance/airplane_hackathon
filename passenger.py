@@ -11,6 +11,9 @@ class Passenger:
         self.generate_multiple_luggage(1)
         self.mobility = 1
 
+    def __str__(self):
+        return 'Passenger with Row {}, seat {}, luggage {}'.format(self.row_number, self.seat_number, self.lugagge_list)
+
     def generate_multiple_luggage(self, quantity):
         for i in range(0, quantity):
             new_luggage = self.generate_luggage()
@@ -41,3 +44,6 @@ class Passenger:
 class Luggage:
     def __init__(self):
         pass
+
+    def __repr__(self):
+        return 'A suitcase'

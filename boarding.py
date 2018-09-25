@@ -24,7 +24,7 @@ class Boarding:
         if not self.boarding_process:
             raise Exception('No boarding process specified')
         assert isinstance(self.boarding_process, BoardingProcess)
-        self.boarding_process.board(self.plane, self.passenger_list)
+        self.boarding_process.board()
 
     def print_description(self):
         print('\n\nWe have a plane with description :\n{}'.format(self.plane))
@@ -62,16 +62,6 @@ class Boarding:
             luggage_count += len(p.lugagge_list)
         return luggage_count
 
-    def assign_seats(self):
-        seat_list = []
-        for p in self.passenger_list:
-            assert isinstance(p, Passenger)
-            row = p.row_number = random.randint(0, self.plane.number_of_rows)
-            seat = p.seat_number = random.randint(0, self.plane.seats_per_row)
-
-            seat_list.append([row,seat])
-
-
 
 
 if __name__ == '__main__':
@@ -83,7 +73,9 @@ if __name__ == '__main__':
 
     b.print_description()
 
-    b.assign_seats()
+    b.boarding_process = RandomBoarding(b.plane, b.passenger_list)
+    b.boarding_process.assign_seats()
+    b.boarding_process.print_seating_plan()
+    b.plane.print_manifest()
 
-    b.boarding_process = RandomBoarding()
     b.board()

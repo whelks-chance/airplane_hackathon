@@ -37,6 +37,9 @@ class Plane:
     def overheads_on_plane(self):
         return self.number_of_rows * self.overheads_per_row
 
+    def print_manifest(self):
+        print('No info yet...')
+
 
 class Row:
     def __init__(self, seats_per_row=6, overheads_per_row=2):
